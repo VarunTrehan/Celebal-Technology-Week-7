@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>JavaScript Task Outputs</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f4f4f4;
+      padding: 20px;
+    }
+    h2 {
+      color: #333;
+    }
+    .output-box {
+      background: #fff;
+      padding: 15px;
+      margin-bottom: 20px;
+      border-left: 5px solid #3498db;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    code {
+      background: #eee;
+      padding: 2px 4px;
+      border-radius: 4px;
+      font-family: monospace;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>JavaScript Task Outputs</h1>
+
+  <div class="output-box" id="task1">
+    <h2>1. Join Array Elements</h2>
+    <div id="joinOutput"></div>
+  </div>
+
+  <div class="output-box" id="task2">
+    <h2>2. Most Frequent Element</h2>
+    <div id="freqOutput"></div>
+  </div>
+
+  <div class="output-box" id="task3">
+    <h2>3. Truncate String</h2>
+    <div id="truncateOutput"></div>
+  </div>
+
+  <div class="output-box" id="task4">
+    <h2>4. Capitalize Words</h2>
+    <div id="capitalizeOutput"></div>
+  </div>
+
+  <div class="output-box" id="task5">
+    <h2>5. arrBetween Function</h2>
+    <div id="betweenOutput"></div>
+  </div>
+
+  <div class="output-box" id="task6">
+    <h2>6. Find Index</h2>
+    <div id="findIndexOutput"></div>
+  </div>
+
+  <script>
+    // 1. Join array elements
+    const myColor = ["Red", "Green", "White", "Black"];
+    const joinOutput = `
+      ${myColor.join()}<br>
+      ${myColor.join(',')}<br>
+      ${myColor.join('+')}
+    `;
+    document.getElementById("joinOutput").innerHTML = joinOutput;
+
+    // 2. Most frequent element
+    const arr1 = [3, 'a', 'a', 'a', 2, 3, 'a', 3, 'a', 2, 4, 9, 3];
+    let freq = {}, maxFreq = 0, mostCommon;
+    arr1.forEach(item => {
+      freq[item] = (freq[item] || 0) + 1;
+      if (freq[item] > maxFreq) {
+        maxFreq = freq[item];
+        mostCommon = item;
+      }
+    });
+    document.getElementById("freqOutput").innerText = `${mostCommon} ( ${maxFreq} times )`;
+
+    // 3. Truncate string
+    function truncateString(str, num) {
+      return str.slice(0, num);
+    }
+    document.getElementById("truncateOutput").innerText = truncateString("Robin Singh", 4);
+
+    // 4. Capitalize each word
+    function capitalizeWords(str) {
+      return str.split(' ')
+                .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+                .join(' ');
+    }
+    document.getElementById("capitalizeOutput").innerText = capitalizeWords('js string exercises');
+
+    // 5. arrBetween
+    function arrBetween(start, end, arr) {
+      return arr.filter(num => num > start && num < end);
+    }
+    const betweenResults = [
+      arrBetween(3, 8, [1, 5, 95, 0, 4, 7]),
+      arrBetween(1, 10, [1, 10, 25, 8, 11, 6]),
+      arrBetween(7, 32, [1, 2, 3, 78])
+    ];
+    document.getElementById("betweenOutput").innerHTML =
+      betweenResults.map(arr => `[${arr.join(', ')}]`).join('<br>');
+
+    // 6. Find index
+    function findIndex(arr, val) {
+      return arr.indexOf(val);
+    }
+    const indexResults = [
+      findIndex(["hi", "edabit", "fgh", "abc"], "fgh"),
+      findIndex(["Red", "blue", "Blue", "Green"], "blue"),
+      findIndex(["a", "g", "y", "d"], "d"),
+      findIndex(["Pineapple", "Orange", "Grape", "Apple"], "Pineapple")
+    ];
+    document.getElementById("findIndexOutput").innerHTML =
+      indexResults.map((res, i) => `Result ${i+1}: ${res}`).join('<br>');
+  </script>
+
+</body>
+</html>
